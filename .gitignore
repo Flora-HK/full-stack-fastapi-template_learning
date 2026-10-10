@@ -6,3 +6,11 @@ backend/app/frontend/
 /playwright-report/
 /blob-report/
 /playwright/.cache/
+.DS_Store
+Thumbs.db
+.idea/
+*.log
+.pytest_cache/
+.ruff_cache/
+*.sqlite3
+*.db
