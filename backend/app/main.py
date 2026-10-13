@@ -25,19 +25,21 @@ if settings.SENTRY_DSN and settings.FASTAPI_ENV != "development":
 
 app = FastAPI(
     title=settings.PROJECT_NAME,
-    openapi_url=f"{settings.API_V1_STR}/openapi.json",
+    # title是FastAPI应用实例的标题，用于生成OpenAPI文档的标题
+    openapi_url=f"{settings.API_V1_STR}/openapi.json", # openapi的JSON说明文档应该放在哪个URL，给出用于生成JSON文档的URL
     generate_unique_id_function=custom_generate_unique_id,
     # 'generate_unique_id_function'是官方内置的给路由生成operationId的函数，可以向其传入自定义的路由ID生成函数，在生成OpenAPI时，会自动调用该函数，遍历app.routes，对每个APIRoute实例调用一次，把返回值填进operationId。
     # 生成 OpenAPI 时，会遍历 app.routes，对每个 APIRoute 实例调用一次 generate_unique_id_function(route)，把返回值填进 operationId。
 )
 
+# app.add_middleware(中间件类, 若干该中间件的参数)
 app.add_middleware(
-    CORSMiddleware,
-    allow_origins=[settings.FRONTEND_HOST],
-    allow_credentials=True,
-    allow_methods=["*"],
-    allow_headers=["*"],
-)
+    CORSMiddleware, # CORS中间件，处理跨域请求（只传类本身，不实例化，由FastAPI内部来new）
+    allow_origins=[settings.FRONTEND_HOST], # 允许跨域请求的源，这里只允许来自settings.FRONTEND_HOST的请求
+    allow_credentials=True, # 允许请求携带凭证（Cookie、Authorization头、客户端证书）
+    allow_methods=["*"], # 允许所有(*)的HTTP方法
+    allow_headers=["*"], # 允许请求带所有(*)的自定义头
+) # 添加中间件，将CORS中间件注入到FastAPI应用中，允许来自指定源的前端应用进行跨域请求。
 
-app.include_router(api_router, prefix=settings.API_V1_STR)
+app.include_router(api_router, prefix=settings.API_V1_STR) # 挂载模块化路由：'include_router'是fastapi的内置函数，用于将一个路由器添加到app中，'prefix'表示该路由器下的所有路由的公共前缀。
 app.frontend("/", directory=FRONTEND_DIR)

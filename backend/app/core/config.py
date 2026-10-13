@@ -1,6 +1,9 @@
+# warnings 发出、控制和过滤'警告信息'
+# Literal 字符串字面量类型，将某个参数/变量的值锁定到几个具体的字面量值中
 import warnings
 from typing import Literal, Self
 
+# 将类型注解变成强制规则，不符合条件即报错，类型检验
 from pydantic import (
     EmailStr,
     HttpUrl,
@@ -12,6 +15,7 @@ from pydantic import (
 from pydantic_settings import BaseSettings, SettingsConfigDict
 
 
+# BaseSettings 是BaseModel + 自动读取.env/环境变量
 class Settings(BaseSettings):
     model_config = SettingsConfigDict(
         # Use top level .env file (one level above ./backend/)
