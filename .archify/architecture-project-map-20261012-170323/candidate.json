@@ -1,0 +1,204 @@
+{
+  "schema_version": 1,
+  "diagram_type": "architecture",
+  "meta": {
+    "title": "full-stack-fastapi-template 项目结构一览",
+    "locale": "zh-CN",
+    "output": ".archify/architecture-project-map-20261012-170323/project-overview.html",
+    "quality_profile": "showcase",
+    "repository": {
+      "url": "git@github.com:Flora-HK/full-stack-fastapi-template_learning.git",
+      "provider": "github",
+      "link_mode": "local-only",
+      "revision": "8153b437873f662074ae11ef3339a0fe06ae4b92"
+    }
+  },
+  "components": [
+    {
+      "id": "browser",
+      "type": "external",
+      "label": "浏览器用户",
+      "sublabel": "运行 React SPA",
+      "pos": [40, 320],
+      "size": [130, 62]
+    },
+    {
+      "id": "spa",
+      "type": "frontend",
+      "label": "React SPA",
+      "sublabel": "frontend/src · 页面与组件",
+      "pos": [245, 320],
+      "size": [180, 62],
+      "sources": [
+        { "path": "frontend/src/routes/_layout.tsx", "line": 14, "end_line": 18, "label": "登录守卫 beforeLoad" },
+        { "path": "frontend/src/hooks/useAuth.ts", "line": 15, "label": "token 存 localStorage" },
+        { "path": "frontend/vite.config.ts", "line": 10, "end_line": 11, "label": "构建产物落到后端" }
+      ]
+    },
+    {
+      "id": "proxy",
+      "type": "cloud",
+      "label": "Traefik v3.7",
+      "sublabel": "反向代理 :80 :443",
+      "pos": [500, 320],
+      "size": [160, 62],
+      "sources": [
+        { "path": "compose.yml", "line": 3, "end_line": 18, "label": "proxy 服务与 docker provider" },
+        { "path": "compose.yml", "line": 84, "end_line": 85, "label": "按域名路由到 backend" }
+      ]
+    },
+    {
+      "id": "api",
+      "type": "backend",
+      "label": "FastAPI 应用",
+      "sublabel": "app/api · app/main.py",
+      "pos": [735, 320],
+      "size": [180, 62],
+      "sources": [
+        { "path": "backend/app/api/main.py", "line": 7, "end_line": 14, "label": "聚合各子路由" },
+        { "path": "backend/app/main.py", "line": 35, "end_line": 36, "label": "挂载 /api/v1 并托管前端" },
+        { "path": "backend/app/api/routes/items.py", "line": 10, "label": "条目路由前缀与标签" }
+      ]
+    },
+    {
+      "id": "core",
+      "type": "security",
+      "label": "app/core",
+      "sublabel": "配置 · engine · 密码与 JWT",
+      "pos": [725, 140],
+      "size": [200, 62],
+      "sources": [
+        { "path": "backend/app/core/config.py", "line": 15, "end_line": 25, "label": "Settings 与 token 有效期" },
+        { "path": "backend/app/core/db.py", "line": 7, "label": "create_engine(psycopg)" },
+        { "path": "backend/app/core/security.py", "line": 19, "end_line": 25, "label": "HS256 签发 access token" }
+      ]
+    },
+    {
+      "id": "utils",
+      "type": "backend",
+      "label": "app/utils.py",
+      "sublabel": "邮件 · 重置密码 token",
+      "pos": [990, 320],
+      "size": [165, 62],
+      "sources": [
+        { "path": "backend/app/utils.py", "line": 34, "end_line": 56, "label": "send_email 走 SMTP" },
+        { "path": "backend/app/utils.py", "line": 105, "end_line": 118, "label": "重置密码 token 签发与校验" }
+      ]
+    },
+    {
+      "id": "crud",
+      "type": "backend",
+      "label": "app/crud.py",
+      "sublabel": "数据访问 · 登录校验",
+      "pos": [735, 520],
+      "size": [180, 62],
+      "sources": [
+        { "path": "backend/app/crud.py", "line": 10, "end_line": 20, "label": "create_user / update_user" },
+        { "path": "backend/app/crud.py", "line": 45, "end_line": 61, "label": "authenticate 抗时序攻击" },
+        { "path": "backend/app/crud.py", "line": 63, "label": "create_item" }
+      ]
+    },
+    {
+      "id": "models",
+      "type": "backend",
+      "label": "app/models.py",
+      "sublabel": "表模型 · Pydantic schema",
+      "pos": [735, 720],
+      "size": [180, 62],
+      "sources": [
+        { "path": "backend/app/models.py", "line": 52, "end_line": 61, "label": "User 表模型" },
+        { "path": "backend/app/models.py", "line": 91, "end_line": 102, "label": "Item 表模型与外键" },
+        { "path": "backend/app/models.py", "line": 127, "label": "TokenPayload" }
+      ]
+    },
+    {
+      "id": "db",
+      "type": "database",
+      "label": "PostgreSQL 18",
+      "sublabel": "app 库 · 持久化",
+      "pos": [735, 920],
+      "size": [180, 62],
+      "sources": [
+        { "path": "compose.yml", "line": 20, "end_line": 29, "label": "db 服务与数据卷" },
+        { "path": "backend/app/core/db.py", "line": 7, "label": "engine 连接串" }
+      ]
+    },
+    {
+      "id": "alembic",
+      "type": "backend",
+      "label": "app/alembic",
+      "sublabel": "5 个版本迁移",
+      "pos": [450, 920],
+      "size": [190, 62],
+      "sources": [
+        { "path": "backend/app/alembic/versions/e2412789c190_initialize_models.py", "line": 1, "label": "初始建表" },
+        { "path": "backend/app/alembic/versions/d98dd8ec85a3_edit_replace_id_integers_in_all_models_.py", "line": 1, "label": "主键整数改 UUID" },
+        { "path": "backend/app/alembic/versions/fe56fa70289e_add_created_at_to_user_and_item.py", "line": 1, "label": "head：补时间戳" }
+      ]
+    },
+    {
+      "id": "mailpit",
+      "type": "external",
+      "label": "SMTP / Mailpit",
+      "sublabel": "开发环境邮件投递",
+      "pos": [990, 520],
+      "size": [165, 62],
+      "sources": [
+        { "path": "compose.override.yml", "line": 71, "end_line": 80, "label": "mailpit 服务" },
+        { "path": "backend/app/utils.py", "line": 47, "end_line": 56, "label": "SMTP 参数来自配置" }
+      ]
+    }
+  ],
+  "connections": [
+    { "id": "browser-to-spa", "from": "browser", "to": "spa", "label": "访问", "variant": "emphasis", "fromSide": "right", "toSide": "left" },
+    { "id": "spa-api-call", "from": "spa", "to": "proxy", "label": "调用 API", "fromSide": "right", "toSide": "left" },
+    { "id": "proxy-to-api", "from": "proxy", "to": "api", "label": "转发请求", "fromSide": "right", "toSide": "left" },
+    { "id": "api-to-core", "from": "api", "to": "core", "label": "鉴权 · 配置", "variant": "security", "fromSide": "top", "toSide": "bottom" },
+    { "id": "api-to-utils", "from": "api", "to": "utils", "label": "发信", "fromSide": "right", "toSide": "left" },
+    { "id": "utils-to-mailpit", "from": "utils", "to": "mailpit", "label": "SMTP 发信", "fromSide": "bottom", "toSide": "top" },
+    { "id": "api-to-crud", "from": "api", "to": "crud", "label": "调用 CRUD", "fromSide": "bottom", "toSide": "top" },
+    { "id": "crud-to-models", "from": "crud", "to": "models", "label": "SQLModel 查询", "fromSide": "bottom", "toSide": "top" },
+    { "id": "models-to-db", "from": "models", "to": "db", "label": "表映射", "fromSide": "bottom", "toSide": "top" },
+    { "id": "alembic-to-db", "from": "alembic", "to": "db", "label": "迁移建表", "fromSide": "right", "toSide": "left" }
+  ],
+  "cards": [
+    {
+      "dot": "cyan",
+      "title": "前端 frontend/",
+      "items": [
+        "routes/ — 10 个文件路由；_layout 作登录守卫，四个公开页已登录时弹回 /",
+        "components/ — Admin、Items、UserSettings 业务组件 + 24 个 shadcn/ui 原语",
+        "hooks/ — useAuth（当前用户与登录态）、Toast、剪贴板、断点",
+        "src/client/ — 由 openapi.json 生成的类型化 SDK（生成物，不参与 lint）",
+        "tests/ — Playwright 端到端：登录、注册、管理、条目、设置、重置密码",
+        "vite outDir 直指 backend/app/frontend，生产由后端同源托管"
+      ]
+    },
+    {
+      "dot": "emerald",
+      "title": "后端 backend/",
+      "items": [
+        "app/api/routes — 登录、用户、条目、健康检查；条目按 owner_id 隔离",
+        "app/api/deps — SessionDep 与 CurrentUser 依赖，OAuth2 Bearer 取 token",
+        "app/core — pydantic-settings 配置、create_engine、Argon2 密码与 JWT",
+        "app/models.py — User/Item 表模型 + 各层 Pydantic schema",
+        "app/crud.py — 用户与条目读写、authenticate 含抗时序攻击哑哈希",
+        "app/utils.py + email-templates/ — Jinja2 邮件渲染投递、重置密码 token",
+        "app/alembic — 建表 → 加长度约束 → 主键改 UUID → 级联删除 → 时间戳",
+        "tests/ — pytest 覆盖 API 与 CRUD，CI 覆盖率门槛 90%"
+      ]
+    },
+    {
+      "dot": "amber",
+      "title": "工程化与交付",
+      "items": [
+        ".github/workflows — 15 条流水线：测试、部署、发布、安全、依赖、项目管理",
+        "backend/Dockerfile — 两阶段：Bun 构建前端 → Python 3.14 + uv 运行 4 worker",
+        "compose.yml + override + deploy — Traefik、PostgreSQL、Adminer；dev 另加 Mailpit 与 Playwright",
+        "两条部署路径 — FastAPI Cloud（主）与自托管 Compose + Let's Encrypt（次）",
+        "prek 预提交 — biome、ruff、mypy、ty、zizmor、前端 SDK 再生成",
+        "backend/scripts/prestart.sh — 先 alembic upgrade head，再建首个超级用户"
+      ]
+    }
+  ]
+}

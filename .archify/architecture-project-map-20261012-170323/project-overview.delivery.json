@@ -1,0 +1,17 @@
+{
+  "schemaVersion": 1,
+  "receiptId": "5a501ef6-07f4-4845-989b-83c267300e34",
+  "status": "current",
+  "command": "deliver",
+  "type": "architecture",
+  "input": "E:\\open-source-learning\\full-stack-fastapi-template\\.archify\\architecture-project-map-20261012-170323\\candidate.json",
+  "output": "E:\\open-source-learning\\full-stack-fastapi-template\\.archify\\architecture-project-map-20261012-170323\\project-overview.html",
+  "specification": {
+    "sha256": "eddf06dbcb984a8e6c82632fbc16efd552f4d01e0d5013c8d8fbc16a2021abe1",
+    "bytes": 9170
+  },
+  "artifact": {
+    "sha256": "ae13fe8cf53f2b0cf1b05462c00b2f3284b3bf666b1855ba8c70b0c568bfa3fd",
+    "bytes": 768779
+  }
+}

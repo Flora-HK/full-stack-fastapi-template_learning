@@ -1,0 +1,47 @@
+{
+  "schemaVersion": 1,
+  "ok": true,
+  "command": "finalize",
+  "status": "pass",
+  "type": "architecture",
+  "quality": "showcase",
+  "specification": {
+    "path": "E:\\open-source-learning\\full-stack-fastapi-template\\.archify\\architecture-project-map-20261012-170323\\candidate.json",
+    "sha256": "eddf06dbcb984a8e6c82632fbc16efd552f4d01e0d5013c8d8fbc16a2021abe1",
+    "bytes": 9170
+  },
+  "artifact": {
+    "path": "E:\\open-source-learning\\full-stack-fastapi-template\\.archify\\architecture-project-map-20261012-170323\\project-overview.html",
+    "sha256": "ae13fe8cf53f2b0cf1b05462c00b2f3284b3bf666b1855ba8c70b0c568bfa3fd",
+    "bytes": 768779
+  },
+  "gates": {
+    "validate": "pass",
+    "deliver": "pass",
+    "check": "pass",
+    "browser-check": "pass"
+  },
+  "diagnostics": [],
+  "diagnosticSummary": {
+    "total": 0,
+    "shown": 0,
+    "truncated": false
+  },
+  "evidence": {
+    "receipt": "E:\\open-source-learning\\full-stack-fastapi-template\\.archify\\architecture-project-map-20261012-170323\\project-overview.finalize.json",
+    "summaryReceipt": "E:\\open-source-learning\\full-stack-fastapi-template\\.archify\\architecture-project-map-20261012-170323\\project-overview.finalize-summary.json",
+    "browserCheckReceipt": "E:\\open-source-learning\\full-stack-fastapi-template\\.archify\\architecture-project-map-20261012-170323\\project-overview.browser-check.json"
+  },
+  "update": {
+    "status": "current",
+    "installedVersion": "3.0.1",
+    "availableVersion": "3.0.1",
+    "releaseNotes": null,
+    "checkedAt": "2026-10-12T09:03:40.228Z",
+    "source": "cache",
+    "noticeRequired": false,
+    "noticeText": null
+  },
+  "visualReview": "not-requested",
+  "durationMs": 10802
+}
