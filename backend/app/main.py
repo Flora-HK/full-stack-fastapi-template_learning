@@ -1,3 +1,4 @@
+# pyright: reportMissingTypeStubs=false
 # 1. 标准库-Pathlib导入Path模块，用于处理文件路径
 from pathlib import Path
 
@@ -21,7 +22,10 @@ if settings.SENTRY_DSN and settings.FASTAPI_ENV != "development":
     '''
     该段代码的作用是，如果配置文件中定义了sentry的DSN，并且当前环境不是开发环境，那么就初始化sentry，用于错误追踪。
     '''
-    sentry_sdk.init(dsn=str(settings.SENTRY_DSN), enable_tracing=True) # 'enable_tracing=True'表示启用性能/分布式追踪，不只记报错；'dsn(str)'表示数据源名称，是SDK的核心参数，告诉SDK将事件发送到哪个Sentry项目中。
+    # 'enable_tracing=True'表示启用性能/分布式追踪，不只记报错；'dsn(str)'表示数据源名称，是SDK的核心参数，告诉SDK将事件发送到哪个Sentry项目中。
+    _ = sentry_sdk.init(
+        dsn=str(settings.SENTRY_DSN), enable_tracing=True,
+    )
 
 app = FastAPI(
     title=settings.PROJECT_NAME,

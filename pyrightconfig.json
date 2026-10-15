@@ -1,0 +1,8 @@
+{
+  "include": ["backend", "frontend"],
+  "reportArgumentType": "none",
+  "reportConstantRedefinition": "none",
+  "reportCallIssue": "none",
+  "reportAny": "warning",
+  "reportUnannotatedClassAttribute": "none"
+}
