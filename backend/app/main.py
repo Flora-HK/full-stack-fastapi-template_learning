@@ -2,7 +2,9 @@
 # 1. 标准库-Pathlib导入Path模块，用于处理文件路径
 from pathlib import Path
 
-# 2. 第三方库（通过pip安装的外部包）。引入Sentry的 python SDK，用于错误追踪；引入FastAPi框架的核心类； # 引入FastAPI的路由类，用于自定义一个继承自APIRoute的路由类；# 引入跨域资源共享（CORS）中间件
+# 2. 第三方库（通过pip安装的外部包）。引入Sentry的 python SDK，用于错误追踪；引入FastAPi框架的核心类；
+# 引入FastAPI的路由类，用于自定义一个继承自APIRoute的路由类；
+# 引入跨域资源共享（CORS）中间件
 import sentry_sdk
 from fastapi import FastAPI
 from fastapi.routing import APIRoute

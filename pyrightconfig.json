@@ -4,5 +4,7 @@
   "reportConstantRedefinition": "none",
   "reportCallIssue": "none",
   "reportAny": "warning",
-  "reportUnannotatedClassAttribute": "none"
+  "reportUnannotatedClassAttribute": "none",
+  "venvPath": ".",
+  "venv": ".venv"
 }

@@ -73,6 +73,7 @@ class UpdatePassword(SQLModel):
 
 # Database model, database table inferred from class name
 # table=True 才会真正映射到数据库表（默认 SQLModel 不映射，只当 Pydantic 模型）
+# 将“类”映射成“表”，其中用Field()定义的属性映射成表中的列，用Relationship()定义的属性映射成表中的关系
 # 表名默认取类名小写 -> "user"
 class User(UserBase, table=True):
     # default_factory 让每次新建行自动生成一个 UUID v4
